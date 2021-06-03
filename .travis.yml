@@ -11,10 +11,14 @@ node_js:
   - 16
   - 14
   - 12
+
 services:
   - docker
+  - postgres
 
-before_install:
-  - docker-compose build
-script:
-  - docker-compose run test
+env:
+  global:
+    - PGHOST=localhost
+    - PGUSER=postgres
+    - PGDATABASE=postgres
+    - PGDATABASE_URL=postgres://postgres:@localhost:5432/postgres
